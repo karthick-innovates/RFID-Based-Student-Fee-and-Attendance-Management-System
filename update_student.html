@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        @media screen and (max-width: 500px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Update Student Details for {{ student.name }}</h2>
+        <form method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="{{ student.name }}" required>
+
+            <label for="fee_status">Fee Status:</label>
+            <select name="fee_status">
+                <option value="Paid" {% if student.fee_status == 'Paid' %}selected{% endif %}>Paid</option>
+                <option value="Pending" {% if student.fee_status == 'Pending' %}selected{% endif %}>Pending</option>
+            </select>
+
+            <label for="attendance">Attendance:</label>
+            <input type="number" name="attendance" value="{{ student.attendance }}" required>
+
+            <label for="password">Password:</label>
+            <input type="text" name="password" value="{{ student.password }}" required>
+
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+</html>
